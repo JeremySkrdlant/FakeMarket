@@ -14,6 +14,11 @@ services:
       context: ./stock
     ports: 
       - 3007:3000
+  panel:
+    build:
+      context: ./panel
+    ports: 
+      - 3000:3000
   redis: 
     image: redis 
     ports: 
