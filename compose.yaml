@@ -1,0 +1,24 @@
+services:
+  wells-fargo:
+    build:
+      context: ./stock
+    ports: 
+      - 3005:3000
+  chase:
+    build:
+      context: ./stock
+    ports: 
+      - 3006:3000
+  jp-morgan:
+    build:
+      context: ./stock
+    ports: 
+      - 3007:3000
+  redis: 
+    image: redis 
+    ports: 
+      - 6379:6379
+
+  
+   
+    
