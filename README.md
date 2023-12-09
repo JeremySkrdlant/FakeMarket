@@ -15,3 +15,5 @@ This lesson will cover the following competencies. This is a snapshot from Day 1
 * Express Routes and APIs
 * Working with a database
 * filtering data
+
+[![Click to watch the video](https://img.youtube.com/vi/LxCpcxX6Xmg/hqdefault.jpg)](https://www.youtube.com/watch?v=LxCpcxX6Xmg)
