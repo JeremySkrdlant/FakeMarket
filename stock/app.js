@@ -11,7 +11,12 @@ var stock;
 var orderBook = []
 
 app.get('/', (request, response) => {
-     response.send(`Welcome to this ${stock.name}`)
+     if(stock){
+          response.send(`Welcome to this ${stock.name}`)
+     }else {
+          response.send(`You need to create the stock`)
+     }
+     
 })
 
 app.get('/orders', (request, response) => {
