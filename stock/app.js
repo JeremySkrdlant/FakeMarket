@@ -31,6 +31,10 @@ app.get('/orders', (request, response) => {
      response.send(orderBook)
 })
 
+app.get('/info', (request, response) => {
+      response.send(stock);
+})
+
 app.post('/createStock', (request, response) => {
     const {name, ticker, price} = request.body
     stock = new Stock(name, ticker, parseFloat(price))
