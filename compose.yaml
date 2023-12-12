@@ -4,16 +4,28 @@ services:
       context: ./stock
     ports: 
       - 3005:3000
+    environment:
+      - stockName=Wells_Fargo
+      - ticker=wfc
+      - ipo=30.45
   chase:
     build:
       context: ./stock
     ports: 
       - 3006:3000
+    environment:
+      - stockName=GMC
+      - ticker=GM
+      - ipo=58
   jp-morgan:
     build:
       context: ./stock
     ports: 
       - 3007:3000
+    environment:
+      - stockName=Doge
+      - ticker=doge
+      - ipo=0.0967
   panel:
     build:
       context: ./panel

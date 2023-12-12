@@ -8,6 +8,14 @@ app.use(cors());
 app.use(express.json());
 
 var stock; 
+
+if(process.env){
+     const {stockName, ticker, ipo} = process.env
+     if(stockName && ticker && ipo){
+          stock = new Stock(stockName, ticker, ipo);
+     }
+}
+
 var orderBook = []
 
 app.get('/', (request, response) => {
