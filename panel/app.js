@@ -27,7 +27,7 @@ app.post('/submitOrder/:server', async (request, response) => {
         headers:{
             "Content-Type":"application/json"
         },
-        body: request.body
+        body: JSON.stringify(request.body)
      })
      let data = result.json(); 
      response.send(data);
