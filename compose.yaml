@@ -2,8 +2,8 @@ services:
   wells-fargo:
     build:
       context: ./stock
-    ports: 
-      - 3005:3000
+    expose: 
+      - 3000
     environment:
       - stockName=Wells_Fargo
       - ticker=wfc
@@ -11,8 +11,8 @@ services:
   chase:
     build:
       context: ./stock
-    ports: 
-      - 3006:3000
+    expose: 
+      - 3000
     environment:
       - stockName=GMC
       - ticker=GM
@@ -20,8 +20,8 @@ services:
   jp-morgan:
     build:
       context: ./stock
-    ports: 
-      - 3007:3000
+    expose: 
+      - 3000
     environment:
       - stockName=Doge
       - ticker=doge
