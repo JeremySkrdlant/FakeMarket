@@ -1,11 +1,10 @@
-
-
-
-//Created by
+// Created by
 // Kyler Shalberg
 // Darian Kent 
 // Hunter Stebbins
-// , Nathaniel Whitlock
+// Jeremy Skrdlant
+// Nathaniel Whitlock
+
 
 import express from "express";
 import cors from "cors";
