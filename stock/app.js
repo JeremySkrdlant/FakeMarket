@@ -2,6 +2,7 @@ import express  from "express";
 import cors from "cors"; 
 import {Stock} from "./stock.js"; 
 import { Order } from "./order.js";
+import { LimitOrder } from "./limitOrder.js";
 
 const app = express(); 
 app.use(cors()); 
@@ -17,6 +18,7 @@ if(process.env){
 }
 
 var orderBook = []
+var limitOrder = []
 
 app.get('/', (request, response) => {
      if(stock){
@@ -58,6 +60,16 @@ app.post('/placeOrder', (request, response) => {
      response.send(orderBook);
 })
 
+app.post('/limitOrder', (request, response) => {
+     console.log(request.body)
+     const {address, minCost, ammount} = request.body;
+     let limitOrder = Order(address, minCost, ammount)
+     limitOrder.push(limitOrder)
+     console.log(limitOrder);
+     response.send(limitOrder)
+})
+
+
 // Nathaniel. 
 // route where we pass in a users address, We should get the total 
 // number of stocks they own. 
@@ -66,6 +78,9 @@ app.post('/placeOrder', (request, response) => {
 // Hunter 
 // route where we can view the history of the price of the stock. 
 
+app.get('/history', (request, response) => {
+      response.send(stock.priceHistory)
+})
 
 app.listen(3000, () => {
     console.log(`Server is Listening on 3000`)
