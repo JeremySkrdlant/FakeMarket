@@ -9,6 +9,17 @@ app.use(express.json());
 
 var stock; 
 
+function updateStockPrice(orderType, amount, stock ){
+     stock = new Stock(stockName, ticker, ipo);
+     const priceChange = 0.1
+     if(orderType === "buy"){
+          this.ipo += priceChange * amount
+     }else if(order.orderType === "sell"){
+          this.ipo -= priceChange * amount
+     }
+     console.log(stock.ipo)
+}
+
 if(process.env){
      const {stockName, ticker, ipo} = process.env
      if(stockName && ticker && ipo){
