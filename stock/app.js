@@ -78,6 +78,9 @@ app.post ('/getStockTotal/:accountNumber', () => {
 // Hunter 
 // route where we can view the history of the price of the stock. 
 
+app.get('/history', (request, response) => {
+      response.send(stock.priceHistory)
+})
 
 app.listen(3000, () => {
     console.log(`Server is Listening on 3000`)
