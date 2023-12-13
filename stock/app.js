@@ -41,6 +41,14 @@ app.post('/createStock', (request, response) => {
     response.send(stock);      
 }) 
 
+// Darian
+// Supply and Demand - So if the order is a buy order, that means less stock so the price goes up
+// If the order is a sell order, that means more stock so the price goes down
+
+// Kyler
+// Dissallow someone selling stock they do not own. 
+
+
 app.post('/placeOrder', (request, response) => {
      console.log(request.body)
      const {orderType, amount, account} = request.body;
@@ -49,6 +57,14 @@ app.post('/placeOrder', (request, response) => {
      console.log(orderBook);
      response.send(orderBook);
 })
+
+// Nathaniel. 
+// route where we pass in a users address, We should get the total 
+// number of stocks they own. 
+
+
+// Hunter 
+// route where we can view the history of the price of the stock. 
 
 
 app.listen(3000, () => {
