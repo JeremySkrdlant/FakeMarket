@@ -63,7 +63,7 @@ app.post('/placeOrder', (request, response) => {
 app.post('/limitOrder', (request, response) => {
      console.log(request.body)
      const {address, minCost, ammount} = request.body;
-     let limitOrder = Order(address, minCost, ammount)
+     let limitOrder = new LimitOrder(address, minCost, ammount)
      limitOrder.push(limitOrder)
      console.log(limitOrder);
      response.send(limitOrder)

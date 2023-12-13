@@ -1,6 +1,6 @@
 export class LimitOrder{
-    constructor(orders, minCost, amount){
-        this.orders = orders
+    constructor(address, minCost, amount){
+        this.address = address
         this.minCost = minCost
         this.amount = amount
     }
