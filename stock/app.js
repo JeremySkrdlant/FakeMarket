@@ -13,10 +13,11 @@ function updateStockPrice(orderType, amount, stock ){
      stock = new Stock(stockName, ticker, ipo);
      const priceChange = 0.1
      if(orderType === "buy"){
-          this.ipo += priceChange * amount
+          stock.ipo += priceChange * amount
      }else if(orderType === "sell"){
-          this.ipo -= priceChange * amount
+          stock.ipo -= priceChange * amount
      }
+     stock.priceHistory.push(stock.ipo)
      console.log(stock.ipo)
 }
 
