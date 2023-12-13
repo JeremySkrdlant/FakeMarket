@@ -22,6 +22,7 @@ app.post('/submitOrder/:server', async (request, response) => {
      //You will call the post route on that server
      //The body will contain the same data as the placeorder. 
      const {server} = request.params; 
+     console.log(request.body)
      let result = await fetch(`http://${server}:3000/placeOrder`, {
         method: "POST",
         headers:{
@@ -29,7 +30,8 @@ app.post('/submitOrder/:server', async (request, response) => {
         },
         body: JSON.stringify(request.body)
      })
-     let data = result.json(); 
+     let data = await result.json(); 
+     console.log(data)
      response.send(data);
 })
 

@@ -42,9 +42,11 @@ app.post('/createStock', (request, response) => {
 }) 
 
 app.post('/placeOrder', (request, response) => {
+     console.log(request.body)
      const {orderType, amount, account} = request.body;
      let newOrder = new Order(orderType, amount, account); 
      orderBook.push(newOrder); 
+     console.log(orderBook);
      response.send(orderBook);
 })
 
