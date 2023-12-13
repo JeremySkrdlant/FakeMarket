@@ -10,7 +10,6 @@ app.use(express.json());
 var stock; 
 
 function updateStockPrice(orderType, amount, stock ){
-     stock = new Stock(stockName, ticker, ipo);
      const priceChange = 0.1
      if(orderType === "buy"){
           stock.ipo += priceChange * amount
@@ -68,6 +67,7 @@ app.post('/placeOrder', (request, response) => {
      orderBook.push(newOrder); 
      console.log(orderBook);
      response.send(orderBook);
+     updateStockPrice(orderType, amount, account);
 })
 
 // Nathaniel. 
