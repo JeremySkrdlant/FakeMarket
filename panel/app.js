@@ -1,5 +1,9 @@
-// Created by 
+// Created by
+// Kyler Shalberg
+// Darian Kent 
+// Hunter Stebbins
 // Jeremy Skrdlant
+
 
 import express from "express";
 import cors from "cors";
