@@ -9,6 +9,17 @@ app.use(express.json());
 
 var stock; 
 
+function updateStockPrice(orderType, amount, stock ){
+     const priceChange = 0.1
+     if(orderType === "buy"){
+          stock.ipo += priceChange * amount
+     }else if(orderType === "sell"){
+          stock.ipo -= priceChange * amount
+     }
+     stock.priceHistory.push(stock.ipo)
+     console.log(stock.ipo)
+}
+
 if(process.env){
      const {stockName, ticker, ipo} = process.env
      if(stockName && ticker && ipo){
@@ -56,6 +67,7 @@ app.post('/placeOrder', (request, response) => {
      orderBook.push(newOrder); 
      console.log(orderBook);
      response.send(orderBook);
+     updateStockPrice(orderType, amount, account);
 })
 
 app.post ('/getStockTotal/:accountNumber', () => {
