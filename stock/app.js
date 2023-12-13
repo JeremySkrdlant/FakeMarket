@@ -10,6 +10,17 @@ app.use(express.json());
 
 var stock; 
 
+function updateStockPrice(orderType, amount, stock ){
+     const priceChange = 0.1
+     if(orderType === "buy"){
+          stock.ipo += priceChange * amount
+     }else if(orderType === "sell"){
+          stock.ipo -= priceChange * amount
+     }
+     stock.priceHistory.push(stock.ipo)
+     console.log(stock.ipo)
+}
+
 if(process.env){
      const {stockName, ticker, ipo} = process.env
      if(stockName && ticker && ipo){
@@ -58,7 +69,9 @@ app.post('/placeOrder', (request, response) => {
      orderBook.push(newOrder); 
      console.log(orderBook);
      response.send(orderBook);
+     updateStockPrice(orderType, amount, account);
 })
+
 
 app.post('/limitOrder', (request, response) => {
      console.log(request.body)
@@ -70,10 +83,24 @@ app.post('/limitOrder', (request, response) => {
 })
 
 
-// Nathaniel. 
-// route where we pass in a users address, We should get the total 
-// number of stocks they own. 
 
+
+app.post ('/getStockTotal/:accountNumber', () => {
+     const { accountNumber } = request.params;
+
+     usersOrders = orderBook.filter (order => order.userAccountNumber === accountNumber);
+
+     var stocksAmount = 0;
+     usersOrders.forEach(order => {
+          if (order.orderType.toLowerCase === 'buy') {
+               stocksAmount += order.amount;
+          } else if (order.orderType.toLowerCase === 'sell') {
+               stocksAmount -= order.amount;
+          }
+     });
+
+     response.send ({ total: stocksAmount, history: usersOrders });
+});
 
 // Hunter 
 // route where we can view the history of the price of the stock. 

@@ -24,6 +24,12 @@ app.get('/check/:server', async (request, response) => {
     response.send(data)
 
 })
+app.get('/history/:server', async (request, response) => {
+    const {server} = request.params
+    let result = await fetch(`http://${server}:3000/history`);
+    let data = await result.json();
+    response.send(data)
+})
 
 app.post('/submitOrder/:server', async (request, response) => {
      //You will call the post route on that server
