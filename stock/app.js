@@ -47,17 +47,48 @@ app.post('/createStock', (request, response) => {
 
 // Kyler
 // Dissallow someone selling stock they do not own. 
+// This object tracks the amount of stocks each account owns
 
+var stocksAmount = {};
 
 app.post('/placeOrder', (request, response) => {
-     console.log(request.body)
      const {orderType, amount, account} = request.body;
-     let newOrder = new Order(orderType, amount, account); 
-     orderBook.push(newOrder); 
-     console.log(orderBook);
+ 
+     if (orderType.toLowerCase() === 'sell') {
+         let currentStockAmount = getCount(account);
+ 
+         if (currentStockAmount < amount) {
+             return response.status(400).send('Cannot sell stock you do not own');
+         }
+         stocksAmount[account] = currentStockAmount - amount;
+     } else if (orderType.toLowerCase() === 'buy') {
+         let currentStockAmount = getCount(account);
+         stocksAmount[account] = currentStockAmount + amount;
+     } else {
+         return response.status(400).send('Invalid order type');
+     }
+ 
+     let newOrder = new Order(orderType, amount, account);
+     orderBook.push(newOrder);
+ 
      response.send(orderBook);
-})
-
+ });
+ 
+ function getCount(accountNumber) {
+     let userOrders = orderBook.filter(order => order.account === accountNumber);
+     let stockCount = 0;
+ 
+     userOrders.forEach(order => {
+         if (order.orderType.toLowerCase() === 'buy') {
+             stockCount += order.amount;
+         } else if (order.orderType.toLowerCase() === 'sell') {
+             stockCount -= order.amount;
+         }
+     });
+ 
+     return stockCount;
+ }
+ 
 app.post ('/getStockTotal/:accountNumber', () => {
      const { accountNumber } = request.params;
 
