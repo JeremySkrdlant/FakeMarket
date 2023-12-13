@@ -58,10 +58,22 @@ app.post('/placeOrder', (request, response) => {
      response.send(orderBook);
 })
 
-// Nathaniel. 
-// route where we pass in a users address, We should get the total 
-// number of stocks they own. 
+app.post ('/getStockTotal/:accountNumber', () => {
+     const { accountNumber } = request.params;
 
+     usersOrders = orderBook.filter (order => order.userAccountNumber === accountNumber);
+
+     var stocksAmount = 0;
+     usersOrders.forEach(order => {
+          if (order.orderType.toLowerCase === 'buy') {
+               stocksAmount += order.amount;
+          } else if (order.orderType.toLowerCase === 'sell') {
+               stocksAmount -= order.amount;
+          }
+     });
+
+     response.send ({ total: stocksAmount, history: usersOrders });
+});
 
 // Hunter 
 // route where we can view the history of the price of the stock. 
