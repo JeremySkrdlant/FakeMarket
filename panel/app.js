@@ -48,6 +48,23 @@ app.post('/submitOrder/:server', async (request, response) => {
      response.send(data);
 })
 
+app.post('/limitOrder/:server', async (request, response) => {
+    //You will call the post route on that server
+    //The body will contain the same data as the placeorder. 
+    const {server} = request.params; 
+    console.log(request.body)
+    let result = await fetch(`http://${server}:3000/limitOrder`, {
+       method: "POST",
+       headers:{
+           "Content-Type":"application/json"
+       },
+       body: JSON.stringify(request.body)
+    })
+    let data = await result.json(); 
+    console.log(data)
+    response.send(data);
+})
+
 app.listen(3000, () => {
     console.log(`Server is Listening on 3000`)
 })

@@ -2,6 +2,7 @@ import express  from "express";
 import cors from "cors"; 
 import {Stock} from "./stock.js"; 
 import { Order } from "./order.js";
+import { LimitOrder } from "./limitOrder.js";
 
 const app = express(); 
 app.use(cors()); 
@@ -28,6 +29,7 @@ if(process.env){
 }
 
 var orderBook = []
+var limitOrder = []
 
 app.get('/', (request, response) => {
      if(stock){
@@ -69,6 +71,19 @@ app.post('/placeOrder', (request, response) => {
      response.send(orderBook);
      updateStockPrice(orderType, amount, account);
 })
+
+
+app.post('/limitOrder', (request, response) => {
+     console.log(request.body)
+     const {address, minCost, ammount} = request.body;
+     let limitOrder = new LimitOrder(address, minCost, ammount)
+     limitOrder.push(limitOrder)
+     console.log(limitOrder);
+     response.send(limitOrder)
+})
+
+
+
 
 app.post ('/getStockTotal/:accountNumber', () => {
      const { accountNumber } = request.params;
