@@ -82,13 +82,13 @@ app.post('/limitOrder', (request, response) => {
      response.send(limitOrder)
 })
 
-app.get('/maxOrder', (request, response) => {
+app.get('/maxOrderSell', (request, response) => {
       console.log(request.body)
       const {address, maxCost, amount} = request.body;
-      let maxOrder = new maxOrder(address, maxCost, amount)
-      maxOrder.push(maxOrder)
-      console.log(maxOrder);
-      response.send(maxOrder)
+      let maxOrderSell = new maxOrderSell(address, maxCost, amount)
+      maxOrder.push(maxOrderSell)
+      console.log(maxOrderSell);
+      response.send(maxOrderSell)
 })
 
 
