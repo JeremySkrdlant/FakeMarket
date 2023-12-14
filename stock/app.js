@@ -82,7 +82,14 @@ app.post('/limitOrder', (request, response) => {
      response.send(limitOrder)
 })
 
-
+app.get('/maxOrderSell', (request, response) => {
+      console.log(request.body)
+      const {address, maxCost, amount} = request.body;
+      let maxOrderSell = new maxOrderSell(address, maxCost, amount)
+      maxOrder.push(maxOrderSell)
+      console.log(maxOrderSell);
+      response.send(maxOrderSell)
+})
 
 
 app.post ('/getStockTotal/:accountNumber', () => {
